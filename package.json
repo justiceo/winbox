@@ -50,6 +50,7 @@
     "LICENSE"
   ],
   "readme": "README.md",
-  "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "esbuild": "^0.17.6"
+  }
 }

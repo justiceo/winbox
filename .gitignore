@@ -9,7 +9,6 @@ coverage
 perf
 server
 !*.keep
-package-lock.json
 misc
 vorlage
 test
