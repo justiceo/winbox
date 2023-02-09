@@ -5,10 +5,10 @@ template.innerHTML = (
 
         '<div class=wb-header>' +
             '<div class=wb-control>' +
-                '<span class=wb-min></span>' +
-                '<span class=wb-max></span>' +
-                '<span class=wb-full></span>' +
-                '<span class=wb-close></span>' +
+                '<span title="Minimize" class=wb-min></span>' +
+                '<span title="Maximize" class=wb-max></span>' +
+                '<span title="Fullscreen" class=wb-full></span>' +
+                '<span title="Close" class=wb-close></span>' +
             '</div>' +
             '<div class=wb-drag>'+
                 '<div class=wb-icon></div>' +
