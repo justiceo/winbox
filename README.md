@@ -1,6 +1,7 @@
 <h1>
     <img src="https://cdn.jsdelivr.net/gh/nextapps-de/winbox@master/demo/winbox-gradient.svg" alt="WinBox.js: A modern HTML5 window manager for the web." width="100%">
 </h1>
+<h2>This is slim-down version of Winbox @2503b99 09/06/22</h2>
 <h3>Modern window manager for the web: lightweight, outstanding performance, no dependencies, fully customizable, open source!</h3>
 
 <a target="_blank" href="https://www.npmjs.com/package/winbox"><img src="https://img.shields.io/npm/v/winbox.svg"></a><!--<a target="_blank" href="https://github.com/nextapps-de/winbox/issues"><img src="https://img.shields.io/github/issues/nextapps-de/winbox.svg"></a>-->
