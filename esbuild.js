@@ -12,7 +12,7 @@ esbuild
         outdir: "dist/",
         target: ["chrome107"], // https://en.wikipedia.org/wiki/Google_Chrome_version_history
         loader: {
-            ".svg": "file",
+            ".svg": "dataurl",
           },
       })
       .catch((err) => {
