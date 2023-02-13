@@ -814,8 +814,8 @@ WinBox.prototype.setUrl = function(url, onload){
         node.src = url;
     }
     else{
-        const name = framename ?? "";
-        this.body.innerHTML = `<iframe name="${framename}" src="${url}"></iframe>`;
+        const name = this.framename ?? "";
+        this.body.innerHTML = `<iframe name="${this.framename}" src="${url}"></iframe>`;
         onload && (this.body.firstChild.onload = onload);
     }
 

@@ -63,7 +63,7 @@
       return new WinBox(params);
     }
     body || setup();
-    let id, index, root, tpl, title, icon, mount, html, url, shadowEl, width, height, minwidth, minheight, maxwidth, maxheight, autosize, x, y, top, left, bottom, right, min, max, hidden, modal, background, border, header, classname, oncreate, onclose, onfocus, onblur, onmove, onresize, onfullscreen, onmaximize, onminimize, onrestore, onhide, onshow, onload;
+    let id, index, root, tpl, title, icon, mount, html, url, shadowel, framename, width, height, minwidth, minheight, maxwidth, maxheight, autosize, x, y, top, left, bottom, right, min, max, hidden, modal, background, border, header, classname, oncreate, onclose, onfocus, onblur, onmove, onresize, onfullscreen, onmaximize, onminimize, onrestore, onhide, onshow, onload;
     if (params) {
       if (_title) {
         title = params;
@@ -81,7 +81,8 @@
         mount = params["mount"];
         html = params["html"];
         url = params["url"];
-        shadowEl = params["shadowel"];
+        shadowel = params["shadowel"];
+        framename = params["framename"];
         width = params["width"];
         height = params["height"];
         minwidth = params["minwidth"];
@@ -220,7 +221,7 @@
       }
     }
     register(this);
-    if (shadowEl) {
+    if (shadowel) {
       const se = document.createElement("dictionary-window");
       const style = document.createElement("style");
       style.textContent = _default;
@@ -498,7 +499,8 @@
     if (node && node.tagName.toLowerCase() === "iframe") {
       node.src = url;
     } else {
-      this.body.innerHTML = '<iframe src="' + url + '"></iframe>';
+      const name = this.framename ?? "";
+      this.body.innerHTML = `<iframe name="${this.framename}" src="${url}"></iframe>`;
       onload && (this.body.firstChild.onload = onload);
     }
     return this;
@@ -695,6 +697,7 @@
     const image = control.image;
     const click = control.click;
     const index = control.index;
+    const title = control.title;
     const node = document.createElement("span");
     const icons = getByClass(this.dom, "wb-control");
     const self = this;
@@ -706,6 +709,8 @@
       node.onclick = function(event) {
         click.call(this, event, self);
       };
+    if (title)
+      node.title = title;
     icons.insertBefore(node, icons.childNodes[index || 0]);
     return this;
   };
