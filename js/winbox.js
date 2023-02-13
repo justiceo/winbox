@@ -8,7 +8,7 @@
 
 import template from "./template.js";
 import { addListener, removeListener, setStyle, setText, getByClass, addClass, removeClass, hasClass, preventEvent } from "./helper.js";
-import winboxCssTxt from '../css/winbox.css.txt';
+import winboxcss from '../css/winbox.css.txt';
 
 //const ios = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window["MSStream"];
 
@@ -50,6 +50,7 @@ function WinBox(params, _title){
         mount,
         html,
         url,
+        shadowEl,
 
         width,
         height,
@@ -114,6 +115,7 @@ function WinBox(params, _title){
             mount = params["mount"];
             html = params["html"];
             url = params["url"];
+            shadowEl = params["shadowel"]
 
             width = params["width"];
             height = params["height"];
@@ -303,7 +305,17 @@ function WinBox(params, _title){
     }
 
     register(this);
-    (root || body).appendChild(this.dom);
+    if (shadowEl) {
+      const se = document.createElement("dictionary-window");
+      const style = document.createElement("style");
+      style.textContent = winboxcss;
+      se.appendChild(style);
+      se.appendChild(this.dom);
+      se.attachShadow({ mode: "open" }).innerHTML = "<slot></slot>"; // slot prevents #attachShadow from wiping dom.
+      (root || body).appendChild(se);
+    } else {
+      (root || body).appendChild(this.dom);
+    }
     (oncreate = params["oncreate"]) && oncreate.call(this, params);
 }
 
