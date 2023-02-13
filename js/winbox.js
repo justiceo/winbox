@@ -1185,6 +1185,7 @@ WinBox.prototype.addControl = function(control){
     const image = control.image;
     const click = control.click;
     const index = control.index;
+    const title = control.title;
     const node = document.createElement("span");
     const icons = getByClass(this.dom, "wb-control");
     const self = this;
@@ -1192,6 +1193,7 @@ WinBox.prototype.addControl = function(control){
     if(classname) node.className = classname;
     if(image) setStyle(node, "background-image", "url(" + image + ")");
     if(click) node.onclick = function(event){ click.call(this, event, self) };
+    if(title) node.title = title;
 
     icons.insertBefore(node, icons.childNodes[index || 0]);
 
