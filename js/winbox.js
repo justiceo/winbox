@@ -50,7 +50,8 @@ function WinBox(params, _title){
         mount,
         html,
         url,
-        shadowEl,
+        shadowel,
+        framename,
 
         width,
         height,
@@ -115,7 +116,8 @@ function WinBox(params, _title){
             mount = params["mount"];
             html = params["html"];
             url = params["url"];
-            shadowEl = params["shadowel"]
+            shadowel = params["shadowel"];
+            framename = params["framename"];
 
             width = params["width"];
             height = params["height"];
@@ -305,7 +307,7 @@ function WinBox(params, _title){
     }
 
     register(this);
-    if (shadowEl) {
+    if (shadowel) {
       const se = document.createElement("dictionary-window");
       const style = document.createElement("style");
       style.textContent = winboxcss;
@@ -812,8 +814,8 @@ WinBox.prototype.setUrl = function(url, onload){
         node.src = url;
     }
     else{
-
-        this.body.innerHTML = '<iframe src="' + url + '"></iframe>';
+        const name = framename ?? "";
+        this.body.innerHTML = `<iframe name="${framename}" src="${url}"></iframe>`;
         onload && (this.body.firstChild.onload = onload);
     }
 
