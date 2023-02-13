@@ -7,7 +7,8 @@
 <li>framename - give the inner iframe a name</li>
 <li>control.title - for accessibility </li>
 <li>shadowel - when present wraps the template in ShadowDom </li>
-</li>
+<li>And switches out the heavy-dep build system with esbuild. (To re-bundle images, import js/winbox.js instead of dist/winbox.js)</li>
+</ul>
 
 <h3>Modern window manager for the web: lightweight, outstanding performance, no dependencies, fully customizable, open source!</h3>
 
