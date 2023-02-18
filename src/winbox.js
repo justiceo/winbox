@@ -8,7 +8,6 @@
 
 import template from "./template.js";
 import { addListener, removeListener, setStyle, setText, getByClass, addClass, removeClass, hasClass, preventEvent } from "./helper.js";
-import winboxcss from '../css/winbox.css.txt';
 
 //const ios = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window["MSStream"];
 
@@ -309,9 +308,12 @@ function WinBox(params, _title){
     register(this);
     if (shadowel) {
       const se = document.createElement("dictionary-window");
-      const style = document.createElement("style");
-      style.textContent = winboxcss;
-      se.appendChild(style);
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.type = "text/css";
+      link.href = "./winbox.css";
+      link.itemprop = "url";
+      se.appendChild(link);
       se.appendChild(this.dom);
       se.attachShadow({ mode: "open" }).innerHTML = "<slot></slot>"; // slot prevents #attachShadow from wiping dom.
       (root || body).appendChild(se);

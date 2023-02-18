@@ -33,12 +33,8 @@
   },
   "files": [
     "dist/",
-    "js/",
-    "css/",
-    "img/",
-    "README.md",
-    "CHANGELOG.md",
-    "LICENSE"
+    "src/",
+    "README.md"
   ],
   "readme": "README.md",
   "devDependencies": {
