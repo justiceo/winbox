@@ -51,6 +51,7 @@ function WinBox(params, _title){
         url,
         shadowel,
         framename,
+        cssurl,
 
         width,
         height,
@@ -117,6 +118,7 @@ function WinBox(params, _title){
             url = params["url"];
             shadowel = params["shadowel"];
             framename = params["framename"];
+            cssurl = params["cssurl"];
 
             width = params["width"];
             height = params["height"];
@@ -311,7 +313,7 @@ function WinBox(params, _title){
       const link = document.createElement("link");
       link.rel = "stylesheet";
       link.type = "text/css";
-      link.href = "./winbox.css";
+      link.href = cssurl;
       link.itemprop = "url";
       se.appendChild(link);
       se.appendChild(this.dom);
@@ -817,7 +819,7 @@ WinBox.prototype.setUrl = function(url, onload){
     }
     else{
         const name = this.framename ?? "";
-        this.body.innerHTML = `<iframe name="${this.framename}" src="${url}"></iframe>`;
+        this.body.innerHTML = `<iframe name="${name}" src="${url}"></iframe>`;
         onload && (this.body.firstChild.onload = onload);
     }
 

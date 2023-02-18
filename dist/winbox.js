@@ -60,7 +60,7 @@
       return new WinBox(params);
     }
     body || setup();
-    let id, index, root, tpl, title, icon, mount, html, url, shadowel, framename, width, height, minwidth, minheight, maxwidth, maxheight, autosize, x, y, top, left, bottom, right, min, max, hidden, modal, background, border, header, classname, oncreate, onclose, onfocus, onblur, onmove, onresize, onfullscreen, onmaximize, onminimize, onrestore, onhide, onshow, onload;
+    let id, index, root, tpl, title, icon, mount, html, url, shadowel, framename, cssurl, width, height, minwidth, minheight, maxwidth, maxheight, autosize, x, y, top, left, bottom, right, min, max, hidden, modal, background, border, header, classname, oncreate, onclose, onfocus, onblur, onmove, onresize, onfullscreen, onmaximize, onminimize, onrestore, onhide, onshow, onload;
     if (params) {
       if (_title) {
         title = params;
@@ -80,6 +80,7 @@
         url = params["url"];
         shadowel = params["shadowel"];
         framename = params["framename"];
+        cssurl = params["cssurl"];
         width = params["width"];
         height = params["height"];
         minwidth = params["minwidth"];
@@ -223,7 +224,7 @@
       const link = document.createElement("link");
       link.rel = "stylesheet";
       link.type = "text/css";
-      link.href = "./winbox.css";
+      link.href = cssurl;
       link.itemprop = "url";
       se.appendChild(link);
       se.appendChild(this.dom);
@@ -500,7 +501,7 @@
       node.src = url;
     } else {
       const name = this.framename ?? "";
-      this.body.innerHTML = `<iframe name="${this.framename}" src="${url}"></iframe>`;
+      this.body.innerHTML = `<iframe name="${name}" src="${url}"></iframe>`;
       onload && (this.body.firstChild.onload = onload);
     }
     return this;
