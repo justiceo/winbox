@@ -220,7 +220,7 @@
     }
     register(this);
     if (shadowel) {
-      const se = document.createElement("dictionary-window");
+      const se = document.createElement(shadowel);
       const link = document.createElement("link");
       link.rel = "stylesheet";
       link.type = "text/css";
