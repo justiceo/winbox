@@ -50,8 +50,9 @@ function WinBox(params, _title){
         html,
         url,
         shadowel,
+        shadowdom,
         framename,
-        cssurl,
+        cssurl,        
 
         width,
         height,
@@ -169,6 +170,10 @@ function WinBox(params, _title){
     this.body = getByClass(this.dom, "wb-body");
     this.header = header || 35;
     //this.plugins = [];
+
+    if(index || (index === 0)){
+        index_counter = index;
+    }
 
     if(background){
 
@@ -294,22 +299,23 @@ function WinBox(params, _title){
     if(hidden){
       
         this.hide();
-    }
+    } 
     else{
 
         this.focus();
 
         if(index || (index === 0)){
-
             this.index = index;
-            setStyle(this.dom, "z-index", index);
             if(index > index_counter) index_counter = index;
         }
     }
+    // Set z-index even if hidden
+    setStyle(this.shadowdom? this.shadowdom : this.dom, "z-index", index);
 
     register(this);
     if (shadowel) {
       const se = document.createElement(shadowel);
+      se.style.position = "absolute";
       const link = document.createElement("link");
       link.rel = "stylesheet";
       link.type = "text/css";
@@ -318,6 +324,7 @@ function WinBox(params, _title){
       se.appendChild(link);
       se.appendChild(this.dom);
       se.attachShadow({ mode: "open" }).innerHTML = "<slot></slot>"; // slot prevents #attachShadow from wiping dom.
+      this.shadowdom = se;
       (root || body).appendChild(se);
     } else {
       (root || body).appendChild(this.dom);
@@ -842,7 +849,7 @@ WinBox.prototype.focus = function(state){
 
         last_focus && last_focus.blur();
 
-        setStyle(this.dom, "z-index", ++index_counter);
+        setStyle(this.shadowdom? this.shadowdom : this.dom, "z-index", ++index_counter);
         this.index = index_counter;
         this.addClass("focus");
         last_focus = this;
